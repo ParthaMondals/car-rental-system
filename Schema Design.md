@@ -6,11 +6,11 @@ Car Rental System
 
 ## **CUSTOMER Relation**
 
-CUSTOMER (customer\_id, name, email, phone\_no, aadhaar, house\_no, street, city, state, pin\_code)
+CUSTOMER (customer\_id, name, email, phone\_no, aadhaar, street, city, state, pin\_code)
 
 - **customer\_id:** PRIMARY KEY  
 - **email**, **phone\_no**, **aadhaar:** UNIQUE, NOT NULL  
-- **house\_no, street, city, state, pin\_code:** Address attributes
+- **street, city, state, pin\_code:** Address attributes
 
 ### Candidate Keys
 
@@ -18,17 +18,17 @@ CUSTOMER (customer\_id, name, email, phone\_no, aadhaar, house\_no, street, city
 
 ### Functional Dependencies (FDs)
 
-- customer\_id → { name, email, phone\_no, aadhaar, house\_no, street, city, state, pin\_code }  
-- aadhaar → { customer\_id, name, email, phone\_no, house\_no, street, city, state, pin\_code }  
-- email → { customer\_id, name, phone\_no, aadhaar, house\_no, street, city, state, pin\_code }  
-- phone\_no → { customer\_id, name, aadhaar, house\_no, street, city, state, pin\_code }  
+- customer\_id → { name, email, phone\_no, aadhaar, street, city, state, pin\_code }  
+- aadhaar → { customer\_id, name, email, phone\_no, street, city, state, pin\_code }  
+- email → { customer\_id, name, phone\_no, aadhaar, street, city, state, pin\_code }  
+- phone\_no → { customer\_id, name, aadhaar, street, city, state, pin\_code }  
 - pin\_code → { city, state }
 
 ---
 
 #### 1NF
 
-This schema contains separate columns for house\_no, street, city, state, and pin\_code. Assuming each field contains one atomic value, this relation satisfies **1NF**.
+This schema contains separate columns for street, city, state, and pin\_code. Assuming each field contains one atomic value, this relation satisfies **1NF**.
 
 #### 2NF
 
@@ -50,7 +50,7 @@ Separate the PIN-code information into its own relation.
 
 ### Decomposed Schema (to achieve 3NF & BCNF)
 
-CUSTOMER (customer\_id, name, email, phone\_no, aadhaar, house\_no, street, pin\_code)
+CUSTOMER (customer\_id, name, email, phone\_no, aadhaar, street, pin\_code)
 
 - pin\_code: FOREIGN KEY REFERENCES PINCODE(pin\_code)
 
@@ -72,7 +72,7 @@ PINCODE (pin\_code, city, state)
 
 ## DRIVER Relation
 
-DRIVER (driver\_id, name, email, phone\_no, aadhaar, experience, status, house\_no, street, city, state, pin\_code)
+DRIVER (driver\_id, name, email, phone\_no, aadhaar, experience, status, street, city, state, pin\_code)
 
 - **driver\_id:** PRIMARY KEY  
 - **email:** UNIQUE, NOT NULL  
@@ -86,17 +86,17 @@ DRIVER (driver\_id, name, email, phone\_no, aadhaar, experience, status, house\_
 
 ### Functional Dependencies (FDs)
 
-- driver\_id → { name, email, phone\_no, aadhaar, experience, status, house\_no, street, city, state, pin\_code }  
-- aadhaar → { driver\_id, name, email, phone\_no, experience, status, house\_no, street, city, state, pin\_code }  
-- email → { driver\_id, name, phone\_no, aadhaar, experience, status, house\_no, street, city, state, pin\_code }  
-- phone\_no → { driver\_id, name, phone\_no, aadhaar, experience, status, house\_no, street, city, state, pin\_code }  
+- driver\_id → { name, email, phone\_no, aadhaar, experience, status, street, city, state, pin\_code }  
+- aadhaar → { driver\_id, name, email, phone\_no, experience, status , street, city, state, pin\_code }  
+- email → { driver\_id, name, phone\_no, aadhaar, experience, status , street, city, state, pin\_code }  
+- phone\_no → { driver\_id, name, phone\_no, aadhaar, experience, status , street, city, state, pin\_code }  
 - pin\_code → { city, state }
 
 ---
 
 #### 1NF
 
-This schema contains separate columns for house\_no, street, city, state, and pin\_code. Assuming each field contains one atomic value, this relation satisfies **1NF**.
+This schema contains separate columns for street, city, state, and pin\_code. Assuming each field contains one atomic value, this relation satisfies **1NF**.
 
 #### 2NF
 
@@ -120,7 +120,7 @@ Separate the PIN-code information into its own relation.
 
 ### Decomposed Schema (to achieve 3NF & BCNF)
 
-DRIVER (driver\_id, name, email, phone\_no, aadhaar, experience, status, house\_no, street, pin\_code)
+DRIVER (driver\_id, name, email, phone\_no, aadhaar, experience, status , street, pin\_code)
 
 - **driver\_id:** PRIMARY KEY  
 - **email:** UNIQUE, NOT NULL  
@@ -146,25 +146,19 @@ PINCODE (pin\_code, city, state)
 
 ## OWNER Relation
 
-OWNER (owner\_id, name, phone, aadhaar\_no, owner\_type, house\_no, street, city, state, pin\_code)
+OWNER (owner\_id, name, phone, aadhaar\_no, owner\_type , street, city, state, pin\_code)
 
 - **owner\_id:** PRIMARY KEY  
-- **phone:** UNIQUE
-
-- **aadhaar\_no:** UNIQUE
+- **phone, aadhaar\_no:** UNIQUE
 
 ### Candidate Keys
 
-- owner\_id → { name, phone, aadhaar\_no, owner\_type, house\_no, street, city, state, pin\_code }  
-- phone → { owner\_id, name, aadhaar\_no, owner\_type, house\_no, street, city, state, pin\_code }  
+- owner\_id → { name, phone, aadhaar\_no, owner\_type , street, city, state, pin\_code }  
+- phone → { owner\_id, name, aadhaar\_no, owner\_type , street, city, state, pin\_code }  
 - pin\_code → { city, state }
-
->
 
 - **Candidate Keys:** {owner\_id}, {phone}  
 - **aadhaar\_no:** Not a candidate key because it is nullable, even though it is UNIQUE.
-
->
 
 ---
 
@@ -187,11 +181,10 @@ OWNER does not satisfy 3NF.
 
 Decomposed Schema (to achieve 3NF & BCNF)
 
-OWNER (owner\_id, name, phone, aadhaar\_no, owner\_type, house\_no, street, pin\_code)
+OWNER (owner\_id, name, phone, aadhaar\_no, owner\_type , street, pin\_code)
 
 - **owner\_id:** PRIMARY KEY  
-- **phone:** UNIQUE  
-- **aadhaar\_no:** UNIQUE  
+- **phone**, **aadhaar\_no:** UNIQUE  
 - pin\_code: FOREIGN KEY REFERENCES PINCODE(pin\_code)
 
 PINCODE (pin\_code, city, state)
@@ -210,10 +203,9 @@ Here:
 
 ## CAR Relation
 
-CAR (car\_id, model, brand, seats, ac, registration\_no, fuel\_type, status, base\_price, owner\_id)
+CAR (car\_id, model, seats, ac, registration\_no, fuel\_type, status, base\_price, owner\_id)
 
-- **car\_id:** PRIMARY KEY
-
+- **car\_id:** PRIMARY KEY  
 - **registration\_no:** UNIQUE, NOT NULL
 
 ### Candidate Keys
@@ -222,10 +214,9 @@ CAR (car\_id, model, brand, seats, ac, registration\_no, fuel\_type, status, bas
 
 ### Functional Dependencies (FDs)
 
-- car\_id → { model, brand, seats, ac, registration\_no, fuel\_type, status, base\_price, owner\_id }  
-- registration\_no → { car\_id, model, brand, seats, ac, fuel\_type, status, base\_price, owner\_id }  
-- { model, brand } → { seats, ac, fuel\_type, base\_price }  
-- { brand } → { model }
+- car\_id → { model, seats, ac, registration\_no, fuel\_type, status, base\_price, owner\_id }  
+- registration\_no → { car\_id, model, seats, ac, fuel\_type, status, base\_price, owner\_id }  
+- model  → { seats, ac, fuel\_type, base\_price }  
 
 #### 1NF
 
@@ -239,9 +230,9 @@ Consequently, CAR satisfies **2NF**, provided it satisfies 1NF.
 
 #### 3NF Violation
 
-In this relation, { model, brand } is not a candidate key and, under the given FDs, is not a superkey.  
+In this relation, { model} is not a candidate key and, under the given FDs, is not a superkey.  
 But:  
-{ model, brand } → { seats, ac, fuel\_type, base\_price }  
+{ model} → { seats, ac, fuel\_type, base\_price }  
 These dependent attributes are non-prime attributes.  
 Therefore, this functional dependency violates **3NF**.  
 We apply decomposition here:
@@ -254,17 +245,17 @@ CAR (car\_id, brand, registration\_no, status, owner\_id)
 - brand: FOREIGN KEY REFERENCES CAR\_MODEL(brand)  
 - **registration\_no:** UNIQUE, NOT NULL
 
-CAR\_MODEL (model, brand, seats, ac, fuel\_type, base\_price)
+CAR\_MODEL (model, seats, ac, fuel\_type, base\_price)
 
-- **PRIMARY KEY:** (model, brand)
+- **PRIMARY KEY:** (model,)
 
 ### Verification of Decomposed Relations
 
-- In the CAR\_MODEL relation, brand and model determine all the other attributes under the given FDs.  
+- In the CAR\_MODEL relation, the **model** determines all the other attributes under the given FDs.  
 - In CAR, car\_id and registration\_no are candidate keys.  
 - Therefore, both relations satisfy **3NF**.  
 - In CAR, car\_id and registration\_no are candidate keys. Every non-trivial FD has a candidate key as its determinant. CAR satisfies **BCNF**.  
-- In CAR\_MODEL, { brand, model } is the primary key and determines all the other attributes. Therefore, every non-trivial FD in CAR\_MODEL has a superkey as its determinant. CAR\_MODEL satisfies **BCNF**.
+- In CAR\_MODEL, { model } is the primary key and determines all the other attributes. Therefore, every non-trivial FD in CAR\_MODEL has a superkey as its determinant. CAR\_MODEL satisfies **BCNF**.
 
 ---
 
