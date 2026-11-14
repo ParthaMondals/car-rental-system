@@ -1,0 +1,13 @@
+{
+    "keywordCase": "lower",
+    "dataTypeCase": "lower",
+    "functionCase": "lower",
+    "identifierCase": "preserve",
+    "linesBetweenQueries": 2,
+    "denseOperators": false,
+    "tabulateAlias": true,
+    "expressionWidth": 120,
+    "tabWidth": 4,
+    "logicalOperatorNewline": "before",
+    "indentStyle": "standard"
+}
