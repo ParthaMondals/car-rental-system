@@ -5,7 +5,7 @@ CREATE TABLE pincode (
     pin_code VARCHAR(6) PRIMARY KEY,
     city VARCHAR(50),
     state VARCHAR(20)
-)
+);
 
 -- OWNER TABLE
 -- Stores company and private car owner details
