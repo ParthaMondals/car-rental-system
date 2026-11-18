@@ -52,17 +52,17 @@ INSERT INTO car (registration_no, model, availability_status, base_price, owner_
 
 
 -- Inserting 10 customers with contact details and city-mapped addresses
-INSERT INTO customer (name, email, phone_no, adhaar, pin_code) VALUES
+INSERT INTO customer (name, email, phone_no, adhaar, pin_code,street) VALUES
 ('Aarav Sharma',    'aarav.sharma@gmail.com',    '9831011111', '111122223333', '700001', '14 Park Street' ),
 ('Priya Iyer', 'priya.iyer@gmail.com',      '9820022222', '222233334444', '600001','7 Anna Salai' ),
-('Rohan Mehta', 'rohan.mehta@yahoo.com',     '9845033333', '333344445555', '400001'.'22 Marine Drive' ),
+('Rohan Mehta', 'rohan.mehta@yahoo.com',     '9845033333', '333344445555', '400001','22 Marine Drive' ),
 ('Sneha Banerjee',  'sneha.banerjee@gmail.com',  '9876044444', '444455556666', '700016', '5 Rashbehari Avenue' ),
-('Karan Nair', 'karan.nair@outlook.com',    '9444055555', '555566667777', '560001,'31 MG Road' '),
+('Karan Nair', 'karan.nair@outlook.com',    '9444055555', '555566667777', '560001','31 MG Road'),
 ('Meera Reddy', 'meera.reddy@gmail.com',     '9700066666', '666677778888', '500001','18 Banjara Hills Road' ),
-('Aditya Verma',    'aditya.verma@gmail.com',    '9830077777', '777788889999', '110001'',     9 Connaught Place'),
+('Aditya Verma',    'aditya.verma@gmail.com',    '9830077777', '777788889999', '110001', '9 Connaught Place'),
 ('Divya Patel', 'divya.patel@yahoo.com',     '9847088888', '888899990000', '400069','45 Linking Road' ),
-('Arjun Das','arjun.das@gmail.com',       '9898099999', '999900001111', '110092,'3 Lajpat Nagar Road' '),
-('Pooja Pillai', 'pooja.pillai@outlook.com',  '9831010000', '000011112222', '700091,'11 Gariahat Road' ');
+('Arjun Das','arjun.das@gmail.com',       '9898099999', '999900001111', '110092','3 Lajpat Nagar Road'),
+('Pooja Pillai', 'pooja.pillai@outlook.com',  '9831010000', '000011112222', '700091','11 Gariahat Road');
 
 -- Inserting 10 drivers with experience, status and city-mapped addresses
 INSERT INTO driver (name, email, phone_no, aadhaar, experience, status, pin_code, street) VALUES
