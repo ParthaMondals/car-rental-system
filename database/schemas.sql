@@ -83,9 +83,9 @@ CREATE TABLE booking (
     customer_id INTEGER NOT NULL,
     driver_id INTEGER,
     car_id INTEGER NOT NULL,
-    booking_date DATE NOT NULL,
-    pickup_date DATE NOT NULL,
-    return_date DATE NOT NULL,
+    booking_date TIMESTAMP NOT NULL,
+    pickup_date TIMESTAMP NOT NULL,
+    return_date TIMESTAMP NOT NULL,
     area_radius DOUBLE PRECISION,
 
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
